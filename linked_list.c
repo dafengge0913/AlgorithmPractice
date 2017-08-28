@@ -17,28 +17,44 @@ void printNodes(struct node *head)
     printf("\n");
 }
 
-void insertNode(struct node *head, int a)
+struct node *insertNode(struct node *head, int a)
 {
-    while (head != NULL)
+
+    if (head == NULL)
+        return head;
+
+    if (head->data > a)
     {
-        if (head->next->data > a)
+        struct node *p = (struct node *)malloc(sizeof(struct node));
+        p->data = a;
+        p->next = head;
+        head = p;
+        return head;
+    }
+
+    struct node *cursor = head;
+    while (cursor != NULL)
+    {
+        if (cursor->next == NULL || cursor->next->data > a)
         {
             struct node *p = (struct node *)malloc(sizeof(struct node));
             p->data = a;
             //先将新增结点的后继指针 指向当前结点的后继指针所指向的结点
-            p->next = head->next;
+            p->next = cursor->next;
             //当前结点的后继指针指向新增结点
-            head->next = p;
-            return;
+            cursor->next = p;
+            break;
         }
-        head = head->next;
+        cursor = cursor->next;
     }
+
+    return head;
 }
 
 void main()
 {
     int n = 5;
-    int data[] = {1, 2, 3, 5, 6};
+    int data[] = {2, 3, 5, 6, 7};
 
     struct node *head, *tail, *p;
     int i;
@@ -61,6 +77,12 @@ void main()
 
     printNodes(head);
 
-    insertNode(head, 4);
+    head = insertNode(head, 1);
+    printNodes(head);
+
+    head = insertNode(head, 4);
+    printNodes(head);
+
+    head = insertNode(head, 8);
     printNodes(head);
 }
