@@ -2,6 +2,7 @@
 
 #define N 5
 
+// 深度优先搜索 遍历 图
 void dfs(int matrix[N][N], int book[], int cur, int sum)
 {
     printf("%d ", cur);
