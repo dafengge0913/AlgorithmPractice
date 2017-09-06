@@ -1,1 +1,2 @@
 # AlgorithmPractice
+Compile with gcc
