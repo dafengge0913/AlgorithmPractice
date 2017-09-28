@@ -7,7 +7,6 @@
 typedef struct
 {
     char *name;
-    int next;    // 下一个尝试
     int current; // 当前选择
     int perfect[N];
 } Person;
@@ -86,16 +85,16 @@ void searchStableMatch(int index, Person *boys, Person *girls)
 int main()
 {
     Person boys[] = {
-        {"1", 0, NO_ONE, {0, 3, 2, 1}},
-        {"2", 0, NO_ONE, {0, 1, 2, 3}},
-        {"3", 0, NO_ONE, {0, 2, 3, 1}},
-        {"4", 0, NO_ONE, {1, 0, 3, 2}}};
+        {"1", NO_ONE, {0, 3, 2, 1}},
+        {"2", NO_ONE, {0, 1, 2, 3}},
+        {"3", NO_ONE, {0, 2, 3, 1}},
+        {"4", NO_ONE, {1, 0, 3, 2}}};
 
     Person girls[] = {
-        {"A", 0, NO_ONE, {2, 3, 1, 0}},
-        {"B", 0, NO_ONE, {2, 1, 3, 0}},
-        {"C", 0, NO_ONE, {0, 2, 3, 1}},
-        {"D", 0, NO_ONE, {1, 3, 2, 0}}};
+        {"A", NO_ONE, {2, 3, 1, 0}},
+        {"B", NO_ONE, {2, 1, 3, 0}},
+        {"C", NO_ONE, {0, 2, 3, 1}},
+        {"D", NO_ONE, {1, 3, 2, 0}}};
 
     searchStableMatch(0, boys, girls);
 
